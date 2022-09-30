@@ -19,3 +19,29 @@
         src: url("/fonts/BrittanySignature/BrittanySignature.ttf");
     }
 }
+
+a {
+    @apply underline
+}
+
+label {
+    @apply block uppercase text-xs
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    @apply bg-gray-100 font-serif h-12 w-full px-4 mb-4
+}
+
+input[type=checkbox] {
+    @apply hidden;
+}
+
+input[type=checkbox] + label {
+    @apply bg-checkbox-unchecked bg-no-repeat pl-5
+}
+
+input[type=checkbox]:checked + label {
+    @apply bg-checkbox-checked bg-no-repeat pl-5
+}
