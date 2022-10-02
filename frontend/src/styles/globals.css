@@ -24,6 +24,10 @@ a {
     @apply underline
 }
 
+p {
+    @apply font-serif mb-8
+}
+
 label {
     @apply block uppercase text-xs
 }
@@ -44,4 +48,28 @@ input[type=checkbox] + label {
 
 input[type=checkbox]:checked + label {
     @apply bg-checkbox-checked bg-no-repeat pl-5
+}
+
+.content {
+    @apply p-8
+}
+
+.white-box {
+    @apply bg-white shadow-lg p-6
+}
+
+.page-title {
+    @apply font-display text-5xl md:text-6xl lg:text-7xl mb-2
+}
+
+.answer {
+    @apply w-18 h-18 rounded-full border-4 border-black flex justify-center items-center uppercase leading-snug text-sm
+}
+
+.button {
+    @apply h-12 w-44 bg-primary font-handwriting block
+}
+
+.button-text {
+    @apply text-6xl relative -top-2
 }
