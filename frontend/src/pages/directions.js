@@ -15,7 +15,7 @@ const Directions = () => {
                     <Answers />
                 </div>
                 <div className="button relative mx-auto top-20 sm:top-20">
-                <Link href="/questions"><a className="button-text no-underline">Start</a></Link>
+                <Link href="/question"><a className="button-text no-underline">Start</a></Link>
                 </div>
             </div>
         </div>

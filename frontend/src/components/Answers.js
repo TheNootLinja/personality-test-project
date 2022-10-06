@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Answers = () => {
+const Answers = ({className}) => {
   return (
-    <div className="flex justify-between absolute sm:relative w-full sm:max-w-md sm:mx-auto left-0 p-2">
+    <div className={`${className} flex justify-between absolute sm:relative w-full sm:max-w-md sm:mx-auto left-0 p-2`}>
         <button className="answer">Never</button>
         <button className="answer">Meh</button>
         <button className="answer">50/50</button>

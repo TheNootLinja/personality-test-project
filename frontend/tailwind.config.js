@@ -25,6 +25,9 @@ module.exports = {
       width: {
         "18": "4.5rem",
       },
+      fontSize: {
+        "10xl": "10rem",
+      }
     },
     fontFamily: {
       'display': ["Mirage"],
