@@ -4,8 +4,21 @@ import Image from 'next/image'
 import Page from '../components/Page'
 import Answers from '../components/Answers'
 import Diagram from '../components/Diagram'
+import {gql, useQuery} from "@apollo/client"
+
+const TYPES_QUERY = gql`query TYPES_QUERY {
+  types {
+    id
+    type
+    subheading
+  }
+}`;
 
 const Question = () => {
+
+  const {data, loading, error} = useQuery(TYPES_QUERY);
+  console.log(data);
+
   return (
     <Page>
         <div className="white-box">

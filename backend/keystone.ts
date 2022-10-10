@@ -24,15 +24,16 @@ export default withAuth(
       provider: 'sqlite',
       url: 'file:./keystone.db',
     },
-    // graphql: {
-    //   apolloConfig: {
-    //     plugins: [
-    //       process.env.NODE_ENV === 'production'
-    //         ? ApolloServerPluginLandingPageDisabled()
-    //         : ApolloServerPluginLandingPageGraphQLPlayground(),
-    //     ],
-    //   }
-    // },
+    server: {
+      cors: {origin: ['http://localhost:8000', 'http://studio.apollographql.com'], credentials: true},
+      // apolloConfig: {
+      //   plugins: [
+      //     process.env.NODE_ENV === 'production'
+      //       ? ApolloServerPluginLandingPageDisabled()
+      //       : ApolloServerPluginLandingPageGraphQLPlayground(),
+      //   ],
+      // }
+    },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
       // For our starter, we check that someone has session data before letting them see the Admin UI.
