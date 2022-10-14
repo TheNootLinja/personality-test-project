@@ -26,13 +26,6 @@ export default withAuth(
     },
     server: {
       cors: {origin: ['http://localhost:8000', 'http://studio.apollographql.com'], credentials: true},
-      // apolloConfig: {
-      //   plugins: [
-      //     process.env.NODE_ENV === 'production'
-      //       ? ApolloServerPluginLandingPageDisabled()
-      //       : ApolloServerPluginLandingPageGraphQLPlayground(),
-      //   ],
-      // }
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {

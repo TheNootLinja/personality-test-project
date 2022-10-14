@@ -73,3 +73,7 @@ input[type=checkbox]:checked + label {
 .button-text {
     @apply text-6xl relative -top-2
 }
+
+.error {
+    @apply text-red-600
+}
