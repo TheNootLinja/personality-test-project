@@ -6,6 +6,7 @@ import {gql, useMutation} from "@apollo/client"
 import {useUser, AUTHENTICATE_USER_QUERY} from "../hooks/User"
 import { useRouter } from 'next/router'
 
+// Query for creating a new user
 const CREATE_USER_MUTATION = gql`
   mutation CREATE_USER_MUTATION($data: UserCreateInput!) {
     createUser(data: $data) {
@@ -18,6 +19,7 @@ const CREATE_USER_MUTATION = gql`
   }
 `;
 
+// Query for authenticating a user session
 const AUTHENTICATE_USER_MUTATION = gql`
   mutation AUTHENTICATE_USER_MUTATION($email: String!, $password: String!) {
     authenticateUserWithPassword(email: $email, password: $password) {
@@ -36,16 +38,20 @@ const AUTHENTICATE_USER_MUTATION = gql`
 `;
 
 const Home = () => {
+
   // using state to track if there has been an error
   const [foundErrors, setFoundErrors] = useState(false);
+  // State to lock form if it is in process of submitting
   const [submittingForm, setSubmittingForm] = useState(false);
   // useForm hook
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  // Calling our custom useUser() hoolk
   const user = useUser();
-  
+
   const router = useRouter();
 
   // Check to see if user has existing session and has already been authenticated
+  // Trigger rerun if user object changes
   useEffect(() => {
     if(user?.authenticatedItem?.id) {
       // redirect user to directions page
@@ -53,14 +59,14 @@ const Home = () => {
     }
   }, [user])
 
-
+  // Function to handle what happens when form is submitted
   const onSubmit = async data => {
     setSubmittingForm(true);
     await signUpUser(data);
     setSubmittingForm(false);
   };
 
-  const [createUser, { data, loading, error}] = useMutation(CREATE_USER_MUTATION);
+  const [createUser] = useMutation(CREATE_USER_MUTATION);
   const [checkUsernamePassword] = useMutation(AUTHENTICATE_USER_MUTATION);
 
   const signUpUser = async (data) => {
@@ -88,8 +94,8 @@ const authenticateUser =  async (data) => {
     // If successfull, send them to directions page
     const loggedInUser = await checkUsernamePassword({
       variables: {
-          "email": data.email,
-          "password": data.password
+        "email": data.email,
+        "password": data.password
       }
     });
 

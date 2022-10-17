@@ -12,7 +12,7 @@ const Directions = () => {
                 <h1 className="page-title">It's Easy.</h1>
                 <p>Answer the following questions with:</p>
                 <div className="mb-24 sm:mb-auto">
-                    <Answers />
+                    <Answers disabled={true}/>
                 </div>
                 <div className="button relative mx-auto top-20 sm:top-20">
                 <Link href="/question"><a className="button-text no-underline">Start</a></Link>

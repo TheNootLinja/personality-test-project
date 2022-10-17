@@ -1,23 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Page from '../components/Page'
 import Answers from '../components/Answers'
 import Diagram from '../components/Diagram'
-import {gql, useQuery} from "@apollo/client"
+import {gql, useQuery, useLazyQuery} from '@apollo/client'
+import {useUser} from '../hooks/User'
 
-const TYPES_QUERY = gql`query TYPES_QUERY {
-  types {
-    id
-    type
-    subheading
+// const TYPES_QUERY = gql`query TYPES_QUERY {
+//   types {
+//     id
+//     type
+//     subheading
+//   }
+// }`;
+
+const USER_ANSWER_QUERY = gql`
+  query USER_ANSWER_QUERY($id: ID!) {
+    answers(where: {
+      user: {
+        id: {
+          equals: $id
+        }
+      }
+    }) {
+      answer
+      question {
+        type {
+          type
+        }
+      }
+    }
   }
-}`;
+`;
 
 const Question = () => {
+  // const {data, loading, error} = useQuery(TYPES_QUERY);
+  const user = useUser();
+  const [getUserAnswers, {data, loading, error}] = useLazyQuery(USER_ANSWER_QUERY);
 
-  const {data, loading, error} = useQuery(TYPES_QUERY);
-  console.log(data);
+  useEffect(() => {
+    if(user?.authenticatedItem?.id) {
+      getUserAnswers({
+        variables: {
+          id: user.authenticatedItem.id
+        }
+      })
+    }
+  }, [])
 
   return (
     <Page>

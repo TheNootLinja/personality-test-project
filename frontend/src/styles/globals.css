@@ -63,7 +63,11 @@ input[type=checkbox]:checked + label {
 }
 
 .answer {
-    @apply w-18 h-18 rounded-full border-4 border-black flex justify-center items-center uppercase leading-snug text-sm
+    @apply w-18 h-18 rounded-full border-4 border-black flex justify-center items-center uppercase leading-snug text-sm cursor-pointer
+}
+
+.answer[disabled] {
+    @apply cursor-default
 }
 
 .button {
