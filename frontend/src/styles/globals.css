@@ -81,3 +81,35 @@ input[type=checkbox]:checked + label {
 .error {
     @apply text-red-600
 }
+
+.circle {
+    @apply fill-silverChalice
+}
+
+.number {
+    @apply fill-white
+}
+
+.result-1 #circle-1,
+.result-2 #circle-2,
+.result-3 #circle-3,
+.result-4 #circle-4,
+.result-5 #circle-5,
+.result-6 #circle-6,
+.result-7 #circle-7,
+.result-8 #circle-8,
+.result-9 #circle-9{
+    @apply fill-primary
+}
+
+.result-1 #number-1,
+.result-2 #number-2,
+.result-3 #number-3,
+.result-4 #number-4,
+.result-5 #number-5,
+.result-6 #number-6,
+.result-7 #number-7,
+.result-8 #number-8,
+.result-9 #number-9{
+    @apply fill-black
+}
