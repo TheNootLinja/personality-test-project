@@ -57,6 +57,7 @@ const Home = () => {
       // redirect user to directions page
       router.push('/directions');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   // Function to handle what happens when form is submitted

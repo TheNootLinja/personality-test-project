@@ -106,6 +106,7 @@ const Question = () => {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   return (
@@ -113,7 +114,7 @@ const Question = () => {
         <div className="white-box">
             <div className="content text-center">
               <div className="font-display text-10xl leading-none -mt-28">
-              <Image src="/img/number-sign.svg" width={72} height={109}/>
+              <Image alt="number sign" src="/img/number-sign.svg" width={72} height={109}/>
               { questionNumber }
               </div>
                 <p>{questions && questions[curSpot]?.question }</p>

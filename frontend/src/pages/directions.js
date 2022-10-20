@@ -9,7 +9,7 @@ const Directions = () => {
         <div className="white-box">
             <div className="content text-center">
                 <h3 className="uppercase tracking-wider mb-2">Instructions</h3>
-                <h1 className="page-title">It's Easy.</h1>
+                <h1 className="page-title">Its Easy.</h1>
                 <p>Answer the following questions with:</p>
                 <div className="mb-24 sm:mb-auto">
                     <Answers disabled={true}/>

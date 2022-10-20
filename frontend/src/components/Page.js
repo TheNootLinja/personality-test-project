@@ -1,13 +1,13 @@
-import React, { Children } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
+import React, { Children } from "react"
+import Head from "next/head"
+import Link from "next/link"
+import Image from "next/image"
 
 const Page = ({children}) => {
   return (
     <div className="bg-page-background-mobile sm:bg-page-background-desktop min-h-screen bg-cover bg-fixed">
       <Head>
-        <title>What's ur #?</title>
+        <title>Whats ur #?</title>
       </Head>
       <main className="px-6 xl:px-32">
 
