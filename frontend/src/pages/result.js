@@ -7,6 +7,7 @@ import Diagram from '../components/Diagram'
 import {gql, useQuery, useLazyQuery} from '@apollo/client'
 import {useUser} from '../hooks/User'
 import { groupBy, sumBy } from 'lodash'
+import Auth from '../components/Auth'
 
 const USER_TYPE_QUERY = gql`
   query USER_TYPE_QUERY($type: Int!) {
@@ -93,22 +94,24 @@ const Question = () => {
   }
 
   return (
-    <Page>
-        <div className="white-box">
-            <div className="content text-center">
-              <div className="page-title leading-none -mt-28">
-              <div className="font-handwriting text-6xl w-full text-left -mb-4 relative -left-10">Hello</div>
-              {typeDetails?.data?.types[0].type && spelledOutNumbers[typeDetails.data.types[0].type - 1]}
-              <br/>
-              {typeDetails?.data?.types[0].subheading && typeDetails.data.types[0].subheading}
-              </div>
-                <div className='max-w-md mx-auto mb-5'>
-                  <Diagram result={result}/>
+    <Auth>
+      <Page>
+          <div className="white-box">
+              <div className="content text-center">
+                <div className="page-title leading-none -mt-28">
+                <div className="font-handwriting text-6xl w-full text-left -mb-4 relative -left-10">Hello</div>
+                {typeDetails?.data?.types[0].type && spelledOutNumbers[typeDetails.data.types[0].type - 1]}
+                <br/>
+                {typeDetails?.data?.types[0].subheading && typeDetails.data.types[0].subheading}
                 </div>
-                <p className="text-left">{typeDetails?.data?.types[0].description && typeDetails.data.types[0].description}</p>
-            </div>
-        </div>
-    </Page>
+                  <div className='max-w-md mx-auto mb-5'>
+                    <Diagram result={result}/>
+                  </div>
+                  <p className="text-left">{typeDetails?.data?.types[0].description && typeDetails.data.types[0].description}</p>
+              </div>
+          </div>
+      </Page>
+    </Auth>
   )
 }
 

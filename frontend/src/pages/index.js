@@ -53,6 +53,8 @@ const Home = () => {
   // Check to see if user has existing session and has already been authenticated
   // Trigger rerun if user object changes
   useEffect(() => {
+    console.log('checking the user');
+    console.log(user);
     if(user?.authenticatedItem?.id) {
       // redirect user to directions page
       router.push('/directions');
@@ -97,7 +99,10 @@ const authenticateUser =  async (data) => {
       variables: {
         "email": data.email,
         "password": data.password
-      }
+      },
+      refetchQueries: [
+        { query: AUTHENTICATE_USER_QUERY }
+      ]
     });
 
     const token = loggedInUser.data.authenticateUserWithPassword.sessionToken;
@@ -111,7 +116,6 @@ const authenticateUser =  async (data) => {
     }
     router.push('/directions');
   } catch {
-    console.log("#3")
     setFoundErrors(true);
   }
 }

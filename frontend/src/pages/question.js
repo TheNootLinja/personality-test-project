@@ -6,6 +6,7 @@ import Answers from '../components/Answers'
 import {gql, useLazyQuery, useMutation} from "@apollo/client"
 import {useRouter} from 'next/router'
 import {useUser} from '../hooks/User'
+import Auth from '../components/Auth'
 
 const QUESTION_QUERY = gql`
   query QUESTION_QUERY($id: ID) {
@@ -110,20 +111,22 @@ const Question = () => {
   }, [user])
 
   return (
-    <Page>
-        <div className="white-box">
-            <div className="content text-center">
-              <div className="font-display text-10xl leading-none -mt-28">
-              <Image alt="number sign" src="/img/number-sign.svg" width={72} height={109}/>
-              { questionNumber }
-              </div>
-                <p>{questions && questions[curSpot]?.question }</p>
-                <div className="mb-24 sm:mb-auto">
-                    <Answers  className="bottom-0 p-2" submitAnswer = {submitAnswer}/>
+    <Auth>
+      <Page>
+          <div className="white-box">
+              <div className="content text-center">
+                <div className="font-display text-10xl leading-none -mt-28">
+                <Image alt="number sign" src="/img/number-sign.svg" width={72} height={109}/>
+                { questionNumber }
                 </div>
-            </div>
-        </div>
-    </Page>
+                  <p>{questions && questions[curSpot]?.question }</p>
+                  <div className="mb-24 sm:mb-auto">
+                      <Answers  className="bottom-0 p-2" submitAnswer = {submitAnswer}/>
+                  </div>
+              </div>
+          </div>
+      </Page>
+    </Auth>
   )
 }
 
