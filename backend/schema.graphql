@@ -13,6 +13,7 @@ type User {
     skip: Int! = 0
   ): [Answer!]
   answerCount(where: AnswerWhereInput! = {}): Int
+  isAdmin: Boolean
 }
 
 type PasswordState {
@@ -32,6 +33,7 @@ input UserWhereInput {
   name: StringFilter
   email: StringFilter
   answer: AnswerManyRelationFilter
+  isAdmin: BooleanFilter
 }
 
 input IDFilter {
@@ -79,10 +81,16 @@ input AnswerManyRelationFilter {
   none: AnswerWhereInput
 }
 
+input BooleanFilter {
+  equals: Boolean
+  not: BooleanFilter
+}
+
 input UserOrderByInput {
   id: OrderDirection
   name: OrderDirection
   email: OrderDirection
+  isAdmin: OrderDirection
 }
 
 enum OrderDirection {
@@ -95,6 +103,7 @@ input UserUpdateInput {
   email: String
   password: String
   answer: AnswerRelateToManyForUpdateInput
+  isAdmin: Boolean
 }
 
 input AnswerRelateToManyForUpdateInput {
@@ -114,6 +123,7 @@ input UserCreateInput {
   email: String
   password: String
   answer: AnswerRelateToManyForCreateInput
+  isAdmin: Boolean
 }
 
 input AnswerRelateToManyForCreateInput {

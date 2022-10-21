@@ -18,6 +18,7 @@ model User {
   email    String   @unique @default("")
   password String
   answer   Answer[] @relation("Answer_user")
+  isAdmin  Boolean  @default(false)
 }
 
 model Question {

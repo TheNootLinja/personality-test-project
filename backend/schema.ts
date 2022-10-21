@@ -16,6 +16,7 @@ A field: The individual bits of data on your list, each with its own type.
 // for putting in our config so we get useful errors. With typescript,
 // we get these even before code runs.
 import { list } from '@keystone-6/core';
+import {isLoggedIn, isUsersItem, isUserAdmin} from './access'
 
 // We're using some common fields in the starter. Check out https://keystonejs.com/docs/apis/fields#fields-api
 // for the full list of fields.
@@ -26,6 +27,7 @@ import {
   timestamp,
   select,
   integer,
+  checkbox
 } from '@keystone-6/core/fields';
 // The document field is a more complicated field, so it's in its own package
 // Keystone aims to have all the base field types, but you can make your own
@@ -55,7 +57,18 @@ export const lists: Lists = {
       }),
       // The password field takes care of hiding details and hashing values
       password: password({ validation: { isRequired: true } }),
-      answer: relationship({ ref: 'Answer.user', many: true})
+      answer: relationship({ ref: 'Answer.user', many: true}),
+      isAdmin: checkbox()
+    },
+    access: {
+      operation: {
+        query: () => true,
+        create: () => true,
+        delete: ({session}) => isUserAdmin(session)
+      },
+      filter: {
+        update: ({session}) => isUsersItem(session)
+      }
     },
     // Here we can configure the Admin UI. We want to show a user's name and posts in the Admin UI
     ui: {
@@ -74,6 +87,14 @@ export const lists: Lists = {
       // table that we created to form a link between the 2 tables
       answer: relationship({ ref: 'Answer.question', many: true })
     },
+    access: {
+      operation: {
+        query: () => true,
+        create: ({session}) => isUserAdmin(session),
+        delete: ({session}) => isUserAdmin(session),
+        update: ({session}) => isUserAdmin(session)
+      }
+    },
     ui: {
       labelField: 'question',
       listView: {
@@ -90,6 +111,16 @@ export const lists: Lists = {
       // relationship field back the other way in the referenced table.
       question: relationship({ ref: 'Question.answer'}),
     },
+    access: {
+      operation: {
+        query: ({session}) => isLoggedIn(session),
+        create: ({session}) => isLoggedIn(session),
+      },
+      filter: {
+        delete: ({session}) => isUsersItem(session),
+        update: ({session}) => isUsersItem(session)
+      }
+    },
     ui: {
       labelField: 'answer',
       listView: {
@@ -104,6 +135,14 @@ export const lists: Lists = {
       subheading: text(),
       description: text({ ui: {displayMode: 'textarea'}}),
       question: relationship({ref: 'Question.type', many: true})
+    },
+    access: {
+      operation: {
+        query: () => true,
+        create: ({session}) => isUserAdmin(session),
+        delete: ({session}) => isUserAdmin(session),
+        update: ({session}) => isUserAdmin(session)
+      }
     },
     ui: {
       // This will change what we see in dropdowns for selecting type like when you
