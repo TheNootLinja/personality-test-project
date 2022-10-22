@@ -70,7 +70,6 @@ const Question = () => {
 
   const [addAnswers, addAnswerMutationResult] = useMutation(ANSWER_QUESTION_MUTATION, {
     onCompleted: () => {
-      console.log("testing")
       const newSpot = curSpot + 1;
       if(newSpot < data.questions.length) {
         setCurSpot(newSpot);

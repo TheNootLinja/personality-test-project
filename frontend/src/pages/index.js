@@ -53,8 +53,6 @@ const Home = () => {
   // Check to see if user has existing session and has already been authenticated
   // Trigger rerun if user object changes
   useEffect(() => {
-    console.log('checking the user');
-    console.log(user);
     if(user?.authenticatedItem?.id) {
       // redirect user to directions page
       router.push('/directions');
@@ -86,7 +84,6 @@ const Home = () => {
     await authenticateUser(data);
     // If error setFoundErrors is true
   } catch {
-    console.log("#1")
     setFoundErrors(true);
   }
   }
@@ -111,7 +108,6 @@ const authenticateUser =  async (data) => {
     if(token) {
       localStorage.setItem("ENNEAGRAM_SESSION", token);
     } else {
-      console.log("#2")
       setFoundErrors(true);
     }
     router.push('/directions');

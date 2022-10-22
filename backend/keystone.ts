@@ -31,7 +31,6 @@ export default withAuth(
     ui: {
       // For our starter, we check that someone has session data before letting them see the Admin UI.
       isAccessAllowed: (context) => {
-        console.log(context.session)
         return !!context.session?.data.isAdmin
       },
     },

@@ -8,8 +8,6 @@ const Auth = ({children}) => {
     const user = useUser();
 
     useEffect(() => {
-        console.log('checking the user');
-        console.log(user);
         if(user?.authenticatedItem === null) {
             router.push("/");
         } else if (user?.authenticatedItem) {
